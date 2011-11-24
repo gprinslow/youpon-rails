@@ -36,6 +36,10 @@ group :test do
   gem 'turn', '~> 0.8.3', :require => false
 	gem 'rspec-rails'
 	gem 'webrat'
+	gem 'autotest'
+	gem 'autotest-rails-pure'
+	gem 'autotest-fsevent'
+	gem 'autotest-growl'
 end
 
 group :production do
