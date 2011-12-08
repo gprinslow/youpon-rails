@@ -30,6 +30,7 @@ GEM
       activesupport (= 3.1.2)
     activesupport (3.1.2)
       multi_json (~> 1.0)
+    annotate (2.4.0)
     ansi (1.4.1)
     arel (2.2.1)
     autotest (4.4.6)
@@ -38,6 +39,7 @@ GEM
       sys-uname
     autotest-growl (0.2.16)
     autotest-rails-pure (4.1.2)
+    bcrypt-ruby (3.0.1)
     builder (3.0.0)
     coffee-rails (3.1.1)
       coffee-script (>= 2.2.0)
@@ -50,6 +52,14 @@ GEM
     erubis (2.7.0)
     execjs (1.2.9)
       multi_json (~> 1.0)
+    factory_girl (2.3.2)
+      activesupport
+    factory_girl_rails (1.4.0)
+      factory_girl (~> 2.3.0)
+      railties (>= 3.0.0)
+    faker (1.0.1)
+      i18n (~> 0.4)
+    gravatar_image_tag (1.0.0)
     hike (1.2.1)
     i18n (0.6.0)
     jquery-rails (1.0.18)
@@ -137,11 +147,16 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  annotate
   autotest
   autotest-fsevent
   autotest-growl
   autotest-rails-pure
+  bcrypt-ruby (~> 3.0.0)
   coffee-rails (~> 3.1.1)
+  factory_girl_rails
+  faker
+  gravatar_image_tag
   jquery-rails
   pg
   rails (= 3.1.2)

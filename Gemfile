@@ -4,6 +4,10 @@ gem 'rails', '3.1.2'
 gem 'sqlite3'
 gem 'jquery-rails'
 
+gem 'gravatar_image_tag'
+
+
+
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
@@ -16,7 +20,7 @@ group :assets do
 end
 
 # To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -29,6 +33,8 @@ end
 
 group :development do
 	gem 'rspec-rails'
+	gem 'annotate'
+	gem 'faker'
 end
 
 group :test do
@@ -40,6 +46,7 @@ group :test do
 	gem 'autotest-rails-pure'
 	gem 'autotest-fsevent'
 	gem 'autotest-growl'
+	gem 'factory_girl_rails'
 end
 
 group :production do
