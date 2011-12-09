@@ -47,6 +47,7 @@ group :test do
 	gem 'autotest-fsevent'
 	gem 'autotest-growl'
 	gem 'factory_girl_rails'
+	gem 'spork'
 end
 
 group :production do
