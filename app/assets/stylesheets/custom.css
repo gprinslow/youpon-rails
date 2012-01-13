@@ -82,7 +82,7 @@ nav ul li a:hover {
 	text-decoration: underline;
 }
 
-/* Sign up button */
+/* Sign up/in buttons */
 
 a.signup_button {
 	margin-left: auto;
@@ -92,6 +92,19 @@ a.signup_button {
 	width: 190px;
 	color: #fff;
 	background: #006400;
+	font-size: 150%;
+	font-weight: bold;
+	padding: 20px;
+}
+
+a.signin_button {
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	text-align: center;
+	width: 190px;
+	color: #fff;
+	background: #3366FF;
 	font-size: 150%;
 	font-weight: bold;
 	padding: 20px;

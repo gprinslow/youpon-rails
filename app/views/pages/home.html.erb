@@ -1,4 +1,8 @@
 <h1>Home</h1>
 <p>This is the home page for Youpon.</p>
-
-<%= link_to "Sign up now!", signup_path, :class => "signup_button round" %>
+<table>
+	<tr>
+		<td><%= link_to "Sign up now!", signup_path, :class => "signup_button round" %></td>
+		<td><%= link_to "Sign in", signin_path, :class => "signin_button round" %></td>
+	</tr>
+</table>
