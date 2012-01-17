@@ -18,7 +18,7 @@
 		</dict>
 	</array>
 	<key>fileHierarchyDrawerWidth</key>
-	<integer>284</integer>
+	<integer>241</integer>
 	<key>metaData</key>
 	<dict>
 		<key>app/controllers/application_controller.rb</key>
@@ -131,6 +131,6 @@
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{291, 738}, {1159, 840}}</string>
+	<string>{{257, 816}, {1023, 762}}</string>
 </dict>
 </plist>
