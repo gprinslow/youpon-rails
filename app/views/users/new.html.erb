@@ -15,16 +15,28 @@
 		</div>
 	<% end %>
 	<div class="field">
-		<%= f.label :email %><br />
+		<%= f.label :name, "Name*" %><br />
+		<%= f.text_field :name %>
+	</div>
+	<div class="field">
+		<%= f.label :email, "Email*" %><br />
 		<%= f.text_field :email %>
 	</div>
 	<div class="field">
-		<%= f.label :password %><br />
+		<%= f.label :password, "Password*" %><br />
 		<%= f.password_field :password %>
 	</div>
 	<div class="field">
-		<%= f.label :password_confirmation, "Confirmation" %><br />
+		<%= f.label :password_confirmation, "Confirmation*" %><br />
 		<%= f.password_field :password_confirmation %>
+	</div>
+	<div class="field">
+		<%= f.label :birthday %><br />
+		<%= f.text_field :birthday %>
+	</div>
+	<div class="field">
+		<%= f.label :gender %><br />
+		<%= select(:user, :gender, [['Female', 'female'], ['Male', 'male'], ['Unspecified', 'unspecified']]) %>
 	</div>
 	<div class="actions">
 		<%= f.submit "Sign up" %>
