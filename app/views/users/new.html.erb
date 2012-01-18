@@ -32,11 +32,11 @@
 	</div>
 	<div class="field">
 		<%= f.label :birthday %><br />
-		<%= f.text_field :birthday %>
+		<%= date_select( :user, :birthday, :start_year => 1910, :end_year => Time.now.year - 1, :order => [:month, :day, :year], :prompt => { :day => 'Select day', :month => 'Select month', :year => 'Select year' } ) %>
 	</div>
 	<div class="field">
 		<%= f.label :gender %><br />
-		<%= select(:user, :gender, [['Female', 'female'], ['Male', 'male'], ['Unspecified', 'unspecified']]) %>
+		<%= select( :user, :gender, [['Unspecified', 'unspecified'], ['Female', 'female'], ['Male', 'male']] ) %>
 	</div>
 	<div class="actions">
 		<%= f.submit "Sign up" %>
