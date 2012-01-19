@@ -12,7 +12,7 @@
 		<td class="sidebar round">
 			<strong>Name</strong> <%= @user.name %><br />
 			<strong>Email</strong> <%= @user.email %><br />
-			<strong>URL</strong> <%= link_to user_path(@user), @user %>
+			<strong>URL</strong> <%= link_to user_path(@user), @user %><br />
 			<% if @user.birthday %><strong>Birthday</strong> <%= @user.birthday %><br /><% end %>
 			<% if @user.gender %><strong>Gender</strong> <%= @user.gender %><br /><% end %>
 		</td>
