@@ -1,6 +1,9 @@
 class SessionsController < ApplicationController
   def new
-		@title = "Sign in"
+		respond_to do |format|
+		  format.html { @title = "Sign in" }
+		  format.json { head :ok }
+		end
   end
 
 	def create
@@ -8,12 +11,26 @@ class SessionsController < ApplicationController
 		
 		if user && user.authenticate(params[:password])
 			sign_in user
-			flash[:success] = "Welcome back!"
-			redirect_to user
+			respond_to do |format|
+			  format.html {
+			    flash[:success] = "Welcome back!"
+    			redirect_to user
+			  }
+			  format.json {
+			    render :json => { :items => current_user }
+			  }
+			end
 		else
-			flash.now[:error] = "Invalid email or password"
-			@title = "Sign in"
-			render 'new'
+			respond_to do |format|
+			  format.html {
+			    flash.now[:error] = "Invalid email or password combination."
+    			@title = "Sign in"
+    			render 'new'
+			  }
+        format.json {
+          render :json => {:items => {:error => 'invalid email or password'} }
+        }
+      end
 		end
 	end
 	
