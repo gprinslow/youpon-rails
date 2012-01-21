@@ -7,11 +7,5 @@ class ApplicationController < ActionController::Base
 	#http_basic_authenticate_with :name => "gprinslow", :password => "asdfFoobar1234"
 	
 	include SessionsHelper
-	private
-	
-	def current_user
-		@current_user ||= ( User.find_by_id(session[:user_id]) if session[:user_id] ) || user_from_remember_token
-		#|| session[:remember_token]
-	end
-	helper_method :current_user
+
 end

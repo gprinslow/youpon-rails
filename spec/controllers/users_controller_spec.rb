@@ -72,35 +72,40 @@ describe UsersController do
         post :create, :user => @attr
         response.should render_template('new')
       end
-    end
-  end
-  
-  describe "success" do
     
-    before(:each) do
-      @attr = { :name => "Autotest03", :email => "autotest03@example.com",
+    end #end failure
+  
+    describe "success" do
+    
+      before(:each) do
+        @attr = { :name => "Autotest03", :email => "autotest03@example.com",
                 :password => "foobar", 
                 :password_confirmation => "foobar" }
-    end
+      end
     
-    it "should create a user" do
-      lambda do
+      it "should create a user" do
+        lambda do
+          post :create, :user => @attr
+        end.should change(User, :count).by(1)
+      end
+      
+			it "should sign the user in" do
+				post :create, :user => @attr
+				controller.should be_signed_in
+			end
+    
+      it "should redirect to the user show page" do
         post :create, :user => @attr
-      end.should change(User, :count).by(1)
-    end
-    
-    it "should redirect to the user show page" do
-      post :create, :user => @attr
-      response.should redirect_to(user_path(assigns(:user)))
-    end
-    
-    it "should have a welcome message" do
-      post :create, :user => @attr
-      flash[:success].should =~ /welcome to youpon!/i
-    end
-  end
+        response.should redirect_to(user_path(assigns(:user)))
+      end
+      
+      it "should have a welcome message" do
+        post :create, :user => @attr
+        flash[:success].should =~ /welcome to youpon/i
+      end
+    end #end success
   
+  end #end Post create
   
-  
-  #end tests
-end
+
+end #end tests
