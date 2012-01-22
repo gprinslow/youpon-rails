@@ -1,4 +1,7 @@
 class SessionsController < ApplicationController
+  
+  before_filter :not_authenticated_or_admin,  :only => [:new, :create]
+  
   def new
 		respond_to do |format|
 		  format.html { @title = "Sign in" }
@@ -12,13 +15,8 @@ class SessionsController < ApplicationController
 		if user && user.authenticate(params[:password])
 			sign_in user
 			respond_to do |format|
-			  format.html {
-			    flash[:success] = "Welcome back!"
-    			redirect_back_or user
-			  }
-			  format.json {
-			    render :json => { :items => current_user }
-			  }
+			  format.html { flash[:success] = "Welcome back!"; redirect_back_or user }
+			  format.json { render :json => { :items => current_user } }
 			end
 		else
 			respond_to do |format|
@@ -39,5 +37,13 @@ class SessionsController < ApplicationController
 	  flash[:notice] = "You have signed out."
 		redirect_to root_path
 	end
-
+	
+	private
+	  def not_authenticated_or_admin
+      if signed_in? && !current_user.admin?
+        flash[:success] = "You are currently signed in."
+        redirect_to(current_user)
+      end
+    end
+  #end private
 end

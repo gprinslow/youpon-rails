@@ -1,36 +1,15 @@
 <h1>Update profile</h1>
 
 <%= form_for @user do |f| %>
-	<%= render 'shared/error_messages', :object => f.object %>
-	<div class="field">
-		<%= f.label :name, "Name" %><br />
-		<%= f.text_field :name %>
-	</div>
-	<div class="field">
-		<%= f.label :email, "Email" %><br />
-		<%= f.text_field :email %>
-	</div>
-	<div class="field">
-		<%= f.label :password, "Password" %><br />
-		<%= f.password_field :password %>
-	</div>
-	<div class="field">
-		<%= f.label :password_confirmation, "Confirmation" %><br />
-		<%= f.password_field :password_confirmation %>
-	</div>
-	<div class="field">
-		<%= f.label :birthday %><br />
-		<%= date_select( :user, :birthday, :start_year => 1910, :end_year => Time.now.year - 1, :order => [:month, :day, :year], :prompt => { :day => 'Select day', :month => 'Select month', :year => 'Select year' } ) %>
-	</div>
-	<div class="field">
-		<%= f.label :gender %><br />
-		<%= select( :user, :gender, [['Unspecified', 'unspecified'], ['Female', 'female'], ['Male', 'male']] ) %>
-	</div>
+	<%= render 'fields', :f => f, :is_required => false %>
 	<div class="actions">
 		<%= f.submit "Update" %>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		<%= link_to "Cancel", current_user %>
 	</div>
 <% end %>
+<br />
 <div>
   <%= gravatar_for @user %>
-	<a href="http://gravatar.com/emails">change</a>
+	<%= link_to "change", "http://gravatar.com/emails", :target => "_blank" %>
 </div>

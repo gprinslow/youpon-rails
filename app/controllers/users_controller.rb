@@ -1,14 +1,17 @@
 #require "rexml/document"
 
 class UsersController < ApplicationController
-  before_filter :authenticate, :only => [:index, :show, :edit, :update]
-  before_filter :correct_user, :only => [:show, :edit, :update]
+
+
+  before_filter :authenticated,               :only => [:show, :edit, :update]
+  before_filter :authenticated_admin,         :only => [:index, :destroy]
+  before_filter :correct_user_or_admin,       :only => [:show, :edit, :update]  
+  before_filter :not_authenticated_or_admin,  :only => [:new, :create]
 
   #GET /users
   def index
     @title = "All users"
     @users = User.order(:name).page params[:page]
-    #@users = User.all
   end
 
   # GET /users/1
@@ -85,22 +88,41 @@ class UsersController < ApplicationController
   # DELETE /users/1.xml
   def destroy
     @user = User.find(params[:id])
-    @user.destroy
 
     respond_to do |format|
-      format.html { redirect_to(users_url) }
-      format.xml  { head :ok }
-			format.json { render :json => @user, :status => :ok }
+      format.html { 
+          if current_user == @user
+            flash.now[:error] = "I forbid you from performing seppuku!"
+            redirect_to(users_path)
+          else
+            @user.destroy
+            flash[:notice] = "User destroyed."
+            redirect_to(users_path)
+          end
+        }
+      #format.xml  { head :ok }
+			#format.json { render :json => @user, :status => :ok }
     end
   end
 	
 	private
-	  def authenticate
+	  def authenticated
 	    deny_access unless signed_in?
 	  end
 	  
-	  def correct_user
+	  def authenticated_admin
+	    redirect_to(root_path) unless signed_in? && current_user.admin?
+	  end
+	  
+	  def correct_user_or_admin
 	    @user = User.find(params[:id])
-	    redirect_to(root_path) unless current_user?(@user)
+	    redirect_to(root_path) unless current_user?(@user) || current_user.admin?
+	  end
+	  
+	  def not_authenticated_or_admin
+	    if signed_in? && !current_user.admin?
+	      flash[:notice] = "You are currently signed in. Please sign out first."
+	      redirect_to(current_user)
+	    end
 	  end
 end

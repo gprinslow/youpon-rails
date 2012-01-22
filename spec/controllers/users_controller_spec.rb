@@ -222,18 +222,31 @@ describe UsersController do
   
   describe "GET 'index'" do
     
-    describe "for non-signed-in users" do
+    describe "for not signed in users" do
       it "should deny access" do
         get :index
-        response.should redirect_to(signin_path)
-        flash[:notice].should =~ /sign in/i
+        response.should redirect_to(root_path)
       end
     end
     
-    describe "for signed-in users" do
+    describe "for signed-in non-admin users" do
+      before(:each) do
+        @user = Factory(:user)
+        test_sign_in(@user)
+      end
+      
+      it "should deny access" do
+        get :index
+        response.should redirect_to(root_path)
+      end
+    end  
+    
+    describe "for signed-in admin users" do
       
       before(:each) do
-        @user = test_sign_in(Factory(:user))
+        admin_user = Factory(:user, :name => "AtAdmin", :email => "atadmin@example.com")
+        admin_user.toggle!(:admin)
+        @user = test_sign_in(admin_user)
         second = Factory(:user, :name => "At06", :email => "at06@example.com")
         third = Factory(:user, :name => "At07", :email => "at07@example.com")
         
@@ -265,9 +278,58 @@ describe UsersController do
       it "should paginate users" do
         get :index
         response.should have_selector("nav", :class => "pagination")
-        response.should have_selector("a", :href => "/users?page=2", :content => "2")
+        response.should have_selector("a", :content => "2")
+        response.should have_selector("a", :content => "Next")
       end
     end
   end #Get index
+  
+  describe "DELETE 'destroy'" do
+    
+    before(:each) do
+      @user = Factory(:user)
+    end
+    
+    describe "as a non-signed-in user" do
+      it "should deny access" do
+        delete :destroy, :id => @user
+        response.should redirect_to(root_path)
+      end
+    end
+    
+    describe "as a signed-in non-admin user" do
+      it "should protect the page" do
+        test_sign_in(@user)
+        delete :destroy, :id => @user
+        response.should redirect_to(root_path)
+      end
+    end
+    
+    describe "as an admin user" do
+      
+      before(:each) do
+        @admin_user = Factory(:user, :name => "AtAdmin", :email => "atadmin@example.com")
+        @admin_user.toggle!(:admin)
+        test_sign_in(@admin_user)
+      end
+      
+      it "should not allow the admin to seppuku" do
+        lambda do
+          delete :destroy, :id => @admin_user
+        end.should_not change(User, :count).by(-1)
+      end
+      
+      it "should destroy the user" do
+        lambda do
+          delete :destroy, :id => @user
+        end.should change(User, :count).by(-1)
+      end
+      
+      it "should redirect to the users index" do
+        delete :destroy, :id => @user
+        response.should redirect_to(users_path)
+      end
+    end
+  end #Delete destroy
   
 end #end tests
