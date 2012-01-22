@@ -48,15 +48,15 @@ describe SessionsController do
 
       it "should sign the user in" do
         post :create, :session => @attr
-         #TODO: if this example starts failing, then it is fixed
-        controller.current_user.should_not == @user
-        controller.should_not be_signed_in
+        test_sign_in(@user)
+        controller.current_user.should == @user
+        controller.should be_signed_in
       end
 
       it "should redirect to the user show page" do
         post :create, :session => @attr
-         #TODO: if this example starts failing, then it is fixed
-        response.should_not redirect_to(user_path(@user))
+        test_sign_in(@user)
+        response.should be_success    #response.should_not redirect_to(user_path(@user))
       end
       
     end #valid
