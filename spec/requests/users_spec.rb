@@ -57,5 +57,19 @@ describe "Users" do
 			end
 		end
 	end #sign in/out
+	
+	describe "destination forwarding" do
+	  
+	  it "should forward to the requested page after signin" do
+	    user = Factory(:user)
+	    visit edit_user_path(user)
+	    #the test goes to signin page
+	    fill_in :email,     :with => user.email
+	    fill_in :password,  :with => user.password
+	    click_button
+	    #the test goes to users/edit
+	    response.should render_template('users/edit')
+	  end
+  end
   
 end #user integration tests

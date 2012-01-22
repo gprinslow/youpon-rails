@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
 			respond_to do |format|
 			  format.html {
 			    flash[:success] = "Welcome back!"
-    			redirect_to user
+    			redirect_back_or user
 			  }
 			  format.json {
 			    render :json => { :items => current_user }

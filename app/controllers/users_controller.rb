@@ -1,6 +1,8 @@
 require "rexml/document"
 
 class UsersController < ApplicationController
+  before_filter :authenticate, :only => [:edit, :update]
+  before_filter :correct_user, :only => [:edit, :update]
 
   # GET /users/1
   # GET /users/1.xml
@@ -65,7 +67,7 @@ class UsersController < ApplicationController
         format.xml  { head :ok }
 				format.json { render :json => @user, :status => :ok }
       else
-        format.html { render :action => "edit" }
+        format.html { @title = "Update profile"; render :action => "edit" }
         format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
 				format.json { render :json => @user.errors, :status => :unprocessable_entity }
       end
@@ -85,4 +87,13 @@ class UsersController < ApplicationController
     end
   end
 	
+	private
+	  def authenticate
+	    deny_access unless signed_in?
+	  end
+	  
+	  def correct_user
+	    @user = User.find(params[:id])
+	    redirect_to(root_path) unless current_user?(@user)
+	  end
 end
