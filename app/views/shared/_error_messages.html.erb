@@ -1,0 +1,17 @@
+<% if object.errors.any? %>
+	<div id="error_explanation">
+		<% if object.errors.full_messages.include?("Password digest can't be blank") %>
+			<h2>Sorry, <%= pluralize(object.errors.count-1, "error") %> prevented this <%= object.class.to_s.underscore.humanize.downcase %> from being saved:</h2>
+		<% else %>
+			<h2>Sorry, <%= pluralize(object.errors.count, "error") %> prevented this <%= object.class.to_s.underscore.humanize.downcase %> from being saved:</h2>
+		<% end %>
+		<br />
+		<ul>
+			<% object.errors.full_messages.each do |msg| %>
+				<% if msg != "Password digest can't be blank" %>
+					<li><%= msg %></li>
+				<% end %>
+			<% end %>
+		</ul>
+	</div>
+<% end %>

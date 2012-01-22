@@ -30,6 +30,7 @@ class UsersController < ApplicationController
   # GET /users/1/edit
 	def edit
 	  @user = User.find(params[:id])
+	  @title = "Update profile"
 	end
 
   # POST /users
@@ -60,7 +61,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html { redirect_to(@user, :notice => 'User was successfully updated.') }
+        format.html { flash[:success] = "Profile updated."; redirect_to @user }
         format.xml  { head :ok }
 				format.json { render :json => @user, :status => :ok }
       else

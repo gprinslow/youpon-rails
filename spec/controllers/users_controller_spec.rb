@@ -107,5 +107,27 @@ describe UsersController do
   
   end #end Post create
   
+  describe "GET 'edit'" do
+    before(:each) do
+      @user = Factory(:user)
+      test_sign_in(@user)
+    end
+
+    it "should be successful" do
+      get :edit, :id => @user
+      response.should be_success
+    end
+
+    it "should have the right title" do
+      get :edit, :id => @user
+      response.should have_selector("title", :content => "Update profile")
+    end
+
+    it "should have a link to change the Gravatar" do
+      get :edit, :id => @user
+      gravatar_url = "http://gravatar.com/emails"
+      response.should have_selector("a", :href => gravatar_url, :content => "change")
+    end
+  end #end Get edit
 
 end #end tests
