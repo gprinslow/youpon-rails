@@ -1,18 +1,18 @@
 <%= render 'shared/error_messages', :object => f.object %>
 <div class="field">
-	<%= f.label :name, "Name" %><% if is_required %><label><em>*</em></label><% end %><br />
+	<%= f.label :name, "Name" %><% if is_required %><label class='red_asterisk'>*</label><% end %><br />
 	<%= f.text_field :name %>
 </div>
 <div class="field">
-	<%= f.label :email, "Email" %><% if is_required %><label><em>*</em></label><% end %><br />
+	<%= f.label :email, "Email" %><% if is_required %><label class='red_asterisk'>*</label><% end %><br />
 	<%= f.text_field :email %>
 </div>
 <div class="field">
-	<%= f.label :password, "Password" %><% if is_required %><label><em>*</em></label><% end %><br />
+	<%= f.label :password, "Password" %><% if is_required %><label class='red_asterisk'>*</label><% end %><br />
 	<%= f.password_field :password %>
 </div>
 <div class="field">
-	<%= f.label :password_confirmation, "Confirmation" %><% if is_required %><label><em>*</em></label><% end %><br />
+	<%= f.label :password_confirmation, "Confirmation" %><% if is_required %><label class='red_asterisk'>*</label><% end %><br />
 	<%= f.password_field :password_confirmation %>
 </div>
 <div class="field">

@@ -160,7 +160,7 @@ div.field {
 }
 
 /* Used for required asterisks */
-label em {
+label.red_asterisk {
 	color: red;
 	font-size: 120%;
 }
@@ -172,13 +172,16 @@ div.actions {
 
 /* Errors */
 .field_with_errors {
-  margin-top: 10px;
+  margin-top: 0px;
   padding: 2px;
   background-color: red;
-  display: table;
 }
 
 .field_with_errors label {
+  color: #fff;
+}
+
+.field_with_errors label.red_asterisk {
   color: #fff;
 }
 
