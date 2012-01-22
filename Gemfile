@@ -5,6 +5,7 @@ gem 'sqlite3'
 gem 'jquery-rails'
 
 gem 'gravatar_image_tag'
+gem 'kaminari'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'

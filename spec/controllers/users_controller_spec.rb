@@ -19,6 +19,7 @@ describe UsersController do
     
     before(:each) do
       @user = Factory(:user)
+      test_sign_in(@user)
     end
     
     it "should be successful" do
@@ -234,9 +235,9 @@ describe UsersController do
       before(:each) do
         @user = test_sign_in(Factory(:user))
         second = Factory(:user, :name => "At06", :email => "at06@example.com")
-        second = Factory(:user, :name => "At07", :email => "at07@example.com")
+        third = Factory(:user, :name => "At07", :email => "at07@example.com")
         
-        @users = [@user, second, thirdv]
+        @users = [@user, second, third]
       end
       
       it "should be successful" do
