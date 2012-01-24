@@ -9,6 +9,6 @@ describe Customer do
 	end
 	
 	pending "should create a new instance given valid attributes" do
-		@customer = @role.create_customer()
+		
 	end
 end
