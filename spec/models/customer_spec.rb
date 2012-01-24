@@ -8,7 +8,7 @@ describe Customer do
     @user = Factory(:user)
 	end
 	
-	pending "should create a new instance given valid attributes" do
-		
+	it "should create a new instance given valid attributes" do
+		Customer.create!
 	end
 end

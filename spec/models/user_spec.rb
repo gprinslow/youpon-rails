@@ -32,4 +32,16 @@ describe User do
 	    @user.should be_admin
 	  end
 	end
+	
+	describe "role association" do
+	  
+	  before(:each) do
+	    @user = User.create(@attr)
+	  end
+	  
+	  it "should have a role attribute" do
+	    @user.should respond_to(:role)
+	  end
+	end
+	  
 end
