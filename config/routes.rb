@@ -1,5 +1,7 @@
 Youpon::Application.routes.draw do
 	
+  get "roles/create"
+
   get "customer/create"
 
   get "sessions/new"

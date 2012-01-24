@@ -1,6 +1,9 @@
 class User < ActiveRecord::Base
 
-  has_one :role
+  has_one   :role,
+            :class_name   => 'Role'
+            :foreign_key  => "user_id"
+            :dependent    => :destroy
 
 	attr_accessible :name, :email, :password, :password_confirmation, :birthday, :gender
 
