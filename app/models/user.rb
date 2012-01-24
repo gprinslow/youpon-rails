@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
 
+  has_one :role
+
 	attr_accessible :name, :email, :password, :password_confirmation, :birthday, :gender
 
 	validates :name,
