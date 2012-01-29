@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120129220612) do
+ActiveRecord::Schema.define(:version => 20120129225809) do
 
   create_table "customers", :force => true do |t|
     t.integer  "role_id"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(:version => 20120129220612) do
     t.integer  "merchant_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "type"
   end
 
   create_table "roles", :force => true do |t|
