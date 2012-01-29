@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120129214010) do
+ActiveRecord::Schema.define(:version => 20120129214604) do
 
   create_table "customers", :force => true do |t|
     t.integer  "role_id"
@@ -34,8 +34,6 @@ ActiveRecord::Schema.define(:version => 20120129214010) do
     t.date     "birthday"
     t.string   "gender"
     t.boolean  "admin",           :default => false
-    t.integer  "role_id"
-    t.string   "role_type"
   end
 
 end
