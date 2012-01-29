@@ -93,18 +93,16 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     respond_to do |format|
-      format.html { 
-          if current_user == @user
-            flash.now[:error] = "I forbid you from performing seppuku!"
-            redirect_to(users_path)
-          else
-            @user.destroy
-            flash[:notice] = "User destroyed."
-            redirect_to(users_path)
-          end
-        }
-      #format.xml  { head :ok }
-			#format.json { render :json => @user, :status => :ok }
+      if current_user != @user
+        @user.destroy
+        format.html { flash[:notice] = "User deleted."; redirect_to(users_path) }
+        format.xml  { head :ok }
+  			format.json { render :json => @user, :status => :ok }
+      else
+        format.html { flash[:error] = "Cannot perform seppuku."; redirect_to(users_path) }
+        format.xml  { render :xml => @user.errors,  :status => :unprocessable_entity }
+				format.json { render :json => @user.errors, :status => :unprocessable_entity }
+			end
     end
   end
 	
