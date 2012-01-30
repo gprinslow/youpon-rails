@@ -1,7 +1,6 @@
 class User < ActiveRecord::Base
 
-  has_one   :role,
-            :dependent    => :destroy
+  has_one :role, :dependent => :destroy
 
 	attr_accessible :name, :email, :password, :password_confirmation, :birthday, :gender
 
