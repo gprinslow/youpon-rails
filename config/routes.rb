@@ -1,5 +1,7 @@
 Youpon::Application.routes.draw do
 	
+  get "requests/new"
+
   get "offers/new"
 
   get "merchants/new"
