@@ -1,5 +1,7 @@
 Youpon::Application.routes.draw do
 	
+  get "offers/new"
+
   get "merchants/new"
 
   get "roles/create"
