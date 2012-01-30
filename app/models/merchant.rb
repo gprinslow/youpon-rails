@@ -1,6 +1,6 @@
 class Merchant < ActiveRecord::Base
   has_many :employees, :dependent => :destroy
-  #has_many :offers, :dependent => :destroy
+  has_many :offers, :dependent => :destroy
   has_many :keys, :through => :employees
   
   attr_accessible :name, :description, :phone, :website
