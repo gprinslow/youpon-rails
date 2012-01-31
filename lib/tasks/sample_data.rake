@@ -19,6 +19,10 @@ namespace :db do
                    :email => email,
                    :password => password,
                    :password_confirmation => password)
+    
+    #Added for Statuses
+    new_status = Status.create!(:type => "RequestStatus", :text => "New")
+    approved_status = Status.create!(:type => "")
     end
   end
 end
