@@ -15,7 +15,6 @@ Factory.sequence :email do |n|
 end
 
 Factory.define :offer do |offer|
-  offer.type    "auto"
   offer.title   "auto"
   offer.byline  "auto"
   offer.category  "testing"
@@ -30,4 +29,8 @@ end
 
 Factory.sequence :title do |n|
   "autooffer-#{n}"
+end
+
+Factory.sequence :category do |n|
+  "testing-#{n}"
 end

@@ -3,7 +3,9 @@ require 'spork'
 
 RSpec.configure do |config|
   
-  config.filter_run(:perf => true)
+  #:perf => 1 (New); => 2 (Returning)
+  
+  config.filter_run(:perf => 2)
   
   def test_sign_in(user)
     controller.sign_in(user)
@@ -61,7 +63,7 @@ Spork.prefork do
 	  # rspec-rails.
 	  config.infer_base_class_for_anonymous_controllers = false
 	  
-	  config.filter_run(:perf => true)
+	  #config.filter_run(:perf => true)
 	  
 	  def test_sign_in(user)
 	    controller.sign_in(user)

@@ -25,10 +25,7 @@ describe User do
         :match => "test=test"
       }
     end
-    
-    start_time = Time.now    
-    
-    
+
     it "should create a user" do
       @customer = Customer.create!
       @user = @customer.create_role.create_user(@user_attr)
@@ -58,8 +55,5 @@ describe User do
       @validation = KeyValidation.create!(@validation_attr)
     end
     
-    end_time = Time.now
-    @elapsed_time = end_time - start_time
-    puts @elapsed_time
   end
 end

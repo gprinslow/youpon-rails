@@ -9,7 +9,11 @@ describe Validation do
     }
   end
   
-  it "should create a new instance given valid attributes" do
+  it "should create a new instance given valid attributes", :perf => 1, :frequency => 0.1 do
+    @validation = Validation.create!(@attr)
+  end
+  
+  it "should create a new instance given valid attributes", :perf => 2, :frequency => 0.2 do
     @validation = Validation.create!(@attr)
   end
   

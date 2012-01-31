@@ -84,7 +84,7 @@ describe UsersController do
                 :password_confirmation => "foobar" }
       end
     
-      it "should create a user" do
+      it "should create a user", :perf => 1, :frequency => 0.1 do
         lambda do
           post :create, :user => @attr
         end.should change(User, :count).by(1)

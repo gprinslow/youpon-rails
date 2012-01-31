@@ -46,7 +46,14 @@ describe SessionsController do
         @attr = { :email => @user.email, :password => @user.password }
       end
 
-      it "should sign the user in", :perf => true, :frequency => 0.1 do
+      it "should sign the user in", :perf => 1, :frequency => 0.1 do
+        post :create, :session => @attr
+        test_sign_in(@user)
+        controller.current_user.should == @user
+        controller.should be_signed_in
+      end
+      
+      it "should sign the user in", :perf => 2, :frequency => 0.1 do
         post :create, :session => @attr
         test_sign_in(@user)
         controller.current_user.should == @user
@@ -63,7 +70,14 @@ describe SessionsController do
     
     describe "DELETE 'destroy'" do
 			
-			it "should sign a user out", :perf => true, :frequency => 0.1 do
+			it "should sign a user out", :perf => 1, :frequency => 0.1 do
+				test_sign_in(Factory(:user))
+				delete :destroy
+				controller.should_not be_signed_in
+				response.should redirect_to(root_path)
+			end
+			
+			it "should sign a user out", :perf => 2, :frequency => 0.1 do
 				test_sign_in(Factory(:user))
 				delete :destroy
 				controller.should_not be_signed_in
