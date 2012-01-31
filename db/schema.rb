@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120130050525) do
+ActiveRecord::Schema.define(:version => 20120130152618) do
 
   create_table "customers", :force => true do |t|
     t.integer  "role_id"
@@ -57,6 +57,15 @@ ActiveRecord::Schema.define(:version => 20120130050525) do
     t.datetime "end"
     t.integer  "number_offered"
     t.boolean  "validation_required"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "requests", :force => true do |t|
+    t.integer  "customer_id"
+    t.integer  "offer_id"
+    t.integer  "status_id"
+    t.string   "type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

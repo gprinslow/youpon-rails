@@ -1,7 +1,5 @@
 require 'spec_helper'
 
-#belongs_to :employee
-
 describe Key do
   
   before(:each) do
