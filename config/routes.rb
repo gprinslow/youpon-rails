@@ -1,5 +1,7 @@
 Youpon::Application.routes.draw do
 	
+  get "validations/new"
+
   get "requests/new"
 
   get "offers/new"
