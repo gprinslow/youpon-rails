@@ -2,6 +2,14 @@ namespace :db do
   desc "Fill database with sample data"
   task :populate => :environment do
     Rake::Task['db:reset'].invoke
+    #Added for Statuses
+    new_status = RequestStatus.create!(:text => "new")
+    accepted_status = RequestStatus.create!(:text => "accepted")
+    denied_status = RequestStatus.create!(:text => "denied")
+    pending_status = ValidationStatus.create!(:text => "pending")
+    validated_status = ValidationStatus.create!(:text => "validated")
+    invalidated_status = ValidationStatus.create!(:text => "invalidated")
+    
     admin = User.create!(:name => "Garrison T. Admin",
                          :email => "admin@eg.com",
                          :password => "foobar",
@@ -20,9 +28,7 @@ namespace :db do
                    :password => password,
                    :password_confirmation => password)
     
-    #Added for Statuses
-    new_status = Status.create!(:type => "RequestStatus", :text => "New")
-    approved_status = Status.create!(:type => "")
+
     end
   end
 end
