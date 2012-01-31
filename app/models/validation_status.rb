@@ -1,0 +1,2 @@
+class ValidationStatus < Status
+end
