@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120131003923) do
+ActiveRecord::Schema.define(:version => 20120131021315) do
 
   create_table "customers", :force => true do |t|
     t.integer  "role_id"
@@ -92,6 +92,17 @@ ActiveRecord::Schema.define(:version => 20120131003923) do
     t.date     "birthday"
     t.string   "gender"
     t.boolean  "admin",           :default => false
+  end
+
+  create_table "validations", :force => true do |t|
+    t.integer  "request_id"
+    t.integer  "employee_id"
+    t.integer  "status_id"
+    t.string   "type"
+    t.string   "criteria"
+    t.string   "match"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
