@@ -1,0 +1,34 @@
+<%= form_for @offer do |f| %>
+	<%= render 'shared/error_messages', :object => f.object %>
+	<div class="field">
+		<%= f.label :title %><br />
+		<%= f.text_field :title %>
+	</div>
+	<div class="field">
+		<%= f.label :byline %><br />
+		<%= f.text_field :byline %>
+	</div>
+	<div class="field">
+		<%= f.label :category %><br />
+		<%= f.text_field :category %>
+	</div>
+	<div class="field">
+		<%= f.label :discount %><br />
+		<%= f.text_field :discount %>
+	</div>
+	<div class="field">
+		<%= f.label :terms %><br />
+		<%= f.text_field :terms %>
+	</div>
+	<div class="field">
+    <%= f.label :start %><br />
+    <%= f.datetime_select :start %>
+  </div>
+  <div class="field">
+    <%= f.label :end %><br />
+    <%= f.datetime_select :end %>
+  </div>
+	<div class="actions">
+		<%= f.submit "Submit" %>
+	</div>
+<% end %>

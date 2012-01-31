@@ -10,6 +10,22 @@ namespace :db do
     validated_status = ValidationStatus.create!(:text => "validated")
     invalidated_status = ValidationStatus.create!(:text => "invalidated")
     
+    #Added for Offers
+    30.times do |n|
+      title = Faker::Company.name
+      byline = "test-#{n+1}"
+      Offer.create!(:title => title,
+        :byline => byline,
+        :category => "test",
+        :discount => "$1",
+        :description => "ineffable",
+        :terms => "no terms!",
+        :start => Time.now,
+        :end => Time.now,
+        :number_offered => 10,
+        :validation_required => true)
+    end
+    
     admin = User.create!(:name => "Garrison T. Admin",
                          :email => "admin@eg.com",
                          :password => "foobar",
