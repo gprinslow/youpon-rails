@@ -31,4 +31,15 @@ describe Offer do
       @offer.should respond_to(:merchant)
     end
   end
+  
+  describe "performance testing" do
+    
+    before(:each) do
+      20.times do
+        @offers << Factory(:offer, :title => Factory.next(:title))
+      end
+    end
+    
+    it "should list all offers"
+  end
 end

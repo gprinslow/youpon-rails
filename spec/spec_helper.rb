@@ -1,6 +1,28 @@
 require 'rubygems'
 require 'spork'
 
+RSpec.configure do |config|
+  
+  config.filter_run(:perf => true)
+  
+  def test_sign_in(user)
+    controller.sign_in(user)
+  end
+  
+  def integration_sign_in(user)
+		visit signin_path
+		fill_in :email, 	  :with => user.email
+		fill_in :password,	:with => user.password
+		click_button
+	end
+end
+
+def calculate_iterations(options)
+  return 0 unless options[:perf] #filtering here improves performance
+  iter_ct = (ENV['ITER'] ? ENV['ITER'].to_i : 1000)
+  (((iter_ct.to_f * (options[:frequency] || 1.0))+1).to_i)
+end
+
 Spork.prefork do
   # Loading more in this block will cause your tests to run faster. However, 
   # if you change any configuration or code from libraries loaded here, you'll
@@ -38,6 +60,8 @@ Spork.prefork do
 	  # automatically. This will be the default behavior in future versions of
 	  # rspec-rails.
 	  config.infer_base_class_for_anonymous_controllers = false
+	  
+	  config.filter_run(:perf => true)
 	  
 	  def test_sign_in(user)
 	    controller.sign_in(user)
