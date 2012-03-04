@@ -11,7 +11,7 @@ namespace :db do
     invalidated_status = ValidationStatus.create!(:text => "invalidated")
     
     #Added for Offers
-    30.times do |n|
+    10.times do |n|
       title = Faker::Company.name
       byline = "test-#{n+1}"
       Offer.create!(:title => title,
