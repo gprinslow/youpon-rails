@@ -9,33 +9,32 @@ class SessionsController < ApplicationController
 		end
   end
 
-	def create
-		
-			respond_to do |format|
-			  format.html { 
-			    user = User.find_by_email(params[:email])
-			    
-			    if user && user.authenticate(params[:password])
-			      sign_in user
-			      flash[:success] = "Welcome back!";
-  			    redirect_back_or user
-			    else
-			      flash.now[:error] = "Invalid email or password combination."
-      			@title = "Sign in"
-      			render 'new'
-      		end
-			  }
-			  format.json { 
-			    user = User.find_by_email(params[:session][:email])
-			    
-			    if user && user.authenticate(params[:session][:password])
-			      sign_in user
-			      render :json => { :items => current_user }
-			    else
-			      render :json => {:items => {:error => 'invalid email or password'} }
-			    end
-			  }
-      end
+	def create	
+		respond_to do |format|
+		  format.html { 
+		    user = User.find_by_email(params[:email])
+		    
+		    if user && user.authenticate(params[:password])
+		      sign_in user
+		      flash[:success] = "Welcome back!";
+			    redirect_back_or user
+		    else
+		      flash.now[:error] = "Invalid email or password combination."
+    			@title = "Sign in"
+    			render 'new'
+    		end
+		  }
+		  format.json { 
+		    user = User.find_by_email(params[:session][:email])
+		    
+		    if user && user.authenticate(params[:session][:password])
+		      sign_in user
+		      render :json => { :items => current_user }
+		    else
+		      render :json => { :items => {:error => 'Invalid email or password combination.'} }
+		    end
+		  }
+    end
 	end
 	
 	def destroy

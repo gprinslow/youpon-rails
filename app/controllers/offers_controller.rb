@@ -6,7 +6,7 @@ class OffersController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @offers }
-      format.json { render :json => {:items => @offers } }
+      format.json { render :json => { :items => @offers } }
     end
   end
   
@@ -15,8 +15,8 @@ class OffersController < ApplicationController
     
     respond_to do |format|
       format.html #show
-      format.xml { render :xml => @offer }
-      format.json { render :json => {:items => @offer } }
+      format.xml  { render :xml => @offer }
+      format.json { render :json => { :items => @offer } }
     end
   end
   

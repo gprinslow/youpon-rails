@@ -8,12 +8,6 @@ class ApplicationController < ActionController::Base
 	
 	include SessionsHelper
 
-  def verified_request?
-      if request.content_type == "application/json"
-        true
-      else
-        super()
-      end
-  end
+
 
 end

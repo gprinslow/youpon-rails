@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @user }
-      format.json { render :json => {:items => @user }}
+      format.json { render :json => { :items => @user } }
     end
 	end
 
@@ -57,7 +57,7 @@ class UsersController < ApplicationController
       if @user.save
         format.html { sign_in @user; flash[:success] = "Welcome to Youpon!"; redirect_to @user }
         format.xml  { render :xml => @user, :status => :created, :location => @user }
-        format.json { sign_in @user; render :json => {:items => @user}, :status => :created, :location => @user }
+        format.json { sign_in @user; render :json => { :items => @user }, :status => :created, :location => @user }
       else
         @title = "Sign up"
         @user.password = ""
