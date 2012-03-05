@@ -31,7 +31,8 @@ class SessionsController < ApplicationController
 		      sign_in user
 		      render :json => { :items => current_user }
 		    else
-		      render :json => { :items => {:error => 'Invalid email or password combination.'} }
+		      @errors 
+		      render :json => { :errors => { :error => "Invalid email or password combination." } }
 		    end
 		  }
     end

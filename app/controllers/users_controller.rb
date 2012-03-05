@@ -64,7 +64,7 @@ class UsersController < ApplicationController
         @user.password_confirmation = ""
         format.html { render :action => "new" }
         format.xml  { render :xml => @user.errors,  :status => :unprocessable_entity }
-				format.json { render :json => @user.errors, :status => :unprocessable_entity }
+				format.json { render :json => { :errors => @user.errors }, :status => :unprocessable_entity }
       end
     end
   end
@@ -78,11 +78,11 @@ class UsersController < ApplicationController
       if @user.update_attributes(params[:user])
         format.html { flash[:success] = "Profile updated."; redirect_to @user }
         format.xml  { head :ok }
-				format.json { render :json => @user, :status => :ok }
+				format.json { render :json => { :items => @user }, :status => :ok }
       else
         format.html { @title = "Update profile"; render :action => "edit" }
         format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
-				format.json { render :json => @user.errors, :status => :unprocessable_entity }
+				format.json { render :json => { :errors => @user.errors }, :status => :unprocessable_entity }
       end
     end
   end
@@ -97,11 +97,11 @@ class UsersController < ApplicationController
         @user.destroy
         format.html { flash[:notice] = "User deleted."; redirect_to(users_path) }
         format.xml  { head :ok }
-  			format.json { render :json => @user, :status => :ok }
+  			format.json { render :json => { :items => @user }, :status => :ok }
       else
         format.html { flash[:error] = "Cannot perform seppuku."; redirect_to(users_path) }
         format.xml  { render :xml => @user.errors,  :status => :unprocessable_entity }
-				format.json { render :json => @user.errors, :status => :unprocessable_entity }
+				format.json { render :json => { :errors => @user.errors }, :status => :unprocessable_entity }
 			end
     end
   end
