@@ -1,5 +1,4 @@
 # Youpon (working title)
-
-This is a work in progress.
-Author: Garrison Prinslow
-Copyright 2011, All Rights Reserved
+## Rails v.3.1
+### Author: Garrison Prinslow
+### Copyright 2011-2012, All Rights Reserved
