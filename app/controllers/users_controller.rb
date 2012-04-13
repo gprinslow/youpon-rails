@@ -48,24 +48,44 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.xml
   def create
-    @role = Role.new
-    @user = @role.build_user(params[:user])
-    #@user = User.new(params[:user])
-    
-    
     respond_to do |format|
-      if @user.save
-        format.html { sign_in @user; flash[:success] = "Welcome to Youpon!"; redirect_to @user }
-        format.xml  { render :xml => @user, :status => :created, :location => @user }
-        format.json { sign_in @user; render :json => { :items => @user }, :status => :created, :location => @user }
-      else
-        @title = "Sign up"
-        @user.password = ""
-        @user.password_confirmation = ""
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @user.errors,  :status => :unprocessable_entity }
-				format.json { render :json => { :errors => @user.errors }, :status => :unprocessable_entity }
-      end
+      format.html {
+        @role = Role.new
+        @user = @role.build_user(params[:user])
+        #note-how to resolve with Customer/Merchant/Employee etc.?
+        if @user.save
+          sign_in @user
+          flash[:success] = "Welcome to Youpon!"
+          redirect_to @user
+        else 
+          @title = "Sign up"
+          @user.password = ""
+          @user.password_confirmation = ""
+          render :action => "new"
+        end
+      }
+      format.xml {
+        @role = Role.new
+        @user = @role.build_user(params[:user])
+        #note-how to resolve with Customer/Merchant/Employee etc.?
+        if @user.save
+          sign_in @user
+          render :xml => @user, :status => :created, :location => @user
+        else
+          render :xml => @user.errors,  :status => :unprocessable_entity
+        end
+      }
+      format.json {
+        @role = Role.new
+        @user = @role.build_user(params[:user])
+        
+        if @user.save
+          sign_in @user
+          render :json => { :items => @user }, :status => :created, :location => @user
+        else
+          render :json => { :errors => @user.errors }, :status => :unprocessable_entity
+        end
+      }
     end
   end
   
