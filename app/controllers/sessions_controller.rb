@@ -2,10 +2,18 @@ class SessionsController < ApplicationController
   
   before_filter :not_authenticated_or_admin,  :only => [:new, :create]
   
+  #ignore CSRF for json request (iphone) to create initial session before cookie established
+  def verified_request?
+    if request.content_type == "application/json"
+      true
+    else
+      super()
+    end
+  end
+  
   def new
 		respond_to do |format|
 		  format.html { @title = "Sign in" }
-		  format.json { head :ok }
 		end
   end
 
@@ -29,7 +37,9 @@ class SessionsController < ApplicationController
 		    
 		    if user && user.authenticate(params[:session][:password])
 		      sign_in user
-		      render :json => { :items => current_user }
+		      role = Role.find_by_user_id(user.id)
+		      customer = Customer.find_by_role_id(role.id)
+		      render :json => { :items => { :user => current_user, :customer => customer } }
 		    else
 		      @errors 
 		      render :json => { :errors => { :error => "Invalid email or password combination." } }

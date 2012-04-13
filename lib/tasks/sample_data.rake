@@ -31,10 +31,20 @@ namespace :db do
                          :password => "foobar",
                          :password_confirmation => "foobar")
     admin.toggle!(:admin)
+    
+    cust_user = User.create!(:name => "Customer",
+                                :email => "cust@eg.com",
+                                :password => "foobar",
+                                :password_confirmation => "foobar")
+    cust_role = Role.create!(:user_id => cust_user.id)
+    cust_cust = Customer.create!(:role_id => cust_role.id)
+                              
+    
     user = User.create!(:name => "Normal User",
                                 :email => "user@eg.com",
                                 :password => "foobar",
                                 :password_confirmation => "foobar")
+                                
     99.times do |n|
       name  = Faker::Name.name
       email = "devtest-#{n+1}@example.com"

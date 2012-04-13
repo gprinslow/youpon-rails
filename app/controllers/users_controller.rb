@@ -17,13 +17,17 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.xml
   def show
-    @user = User.find(params[:id])
+    @user = User.find(params[:id])  
     @title = @user.email
     
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @user }
-      format.json { render :json => { :items => @user } }
+      format.json {    
+        @role = Role.find_by_user_id(@user.id)
+        @customer = Customer.find_by_role_id(@role.id)
+        render :json => { :items => { :user => @user, :customer => @customer } }
+      }
     end
 	end
 

@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery
+  protect_from_forgery   
+  
 	#This forces https in test and production
 	#force_ssl
 	
