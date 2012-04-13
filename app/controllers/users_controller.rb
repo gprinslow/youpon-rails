@@ -75,13 +75,14 @@ class UsersController < ApplicationController
           render :xml => @user.errors,  :status => :unprocessable_entity
         end
       }
-      format.json {
-        @role = Role.new
-        @user = @role.build_user(params[:user])
+      format.json {          
+        #this assumes that json only comes from iphone and iphone users are Customers on signup
+        @customer = Customer.new
+        @user = @customer.create_role.create_user(params[:user])
         
         if @user.save
           sign_in @user
-          render :json => { :items => @user }, :status => :created, :location => @user
+          render :json => { :items => { :user => @user, :customer => @customer } }, :status => :created
         else
           render :json => { :errors => @user.errors }, :status => :unprocessable_entity
         end
