@@ -2,15 +2,6 @@ class SessionsController < ApplicationController
   
   before_filter :not_authenticated_or_admin,  :only => [:new, :create]
   
-  #ignore CSRF for json request (iphone) to create initial session before cookie established
-  def verified_request?
-    if request.content_type == "application/json"
-      true
-    else
-      super()
-    end
-  end
-  
   def new
 		respond_to do |format|
 		  format.html { @title = "Sign in" }

@@ -5,7 +5,7 @@ class RequestsController < ApplicationController
 		  format.json { 
 		    @offer = Offer.find(params[:offer][:id])
 		    @user = User.find(params[:user][:id])
-		    @customer = Customer.find([:customer][:id])
+		    @customer = Customer.find(params[:customer][:id])
 		    
 		    @request = Request.new
 		    @status_attr = { :text => "new" }

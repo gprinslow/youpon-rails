@@ -19,6 +19,7 @@ Youpon::Application.routes.draw do
 	resources :customers
 	resources :roles
 	resources :offers
+	resources :requests, :only => [:create]
 
 	root 							:to => 'pages#home'
 	

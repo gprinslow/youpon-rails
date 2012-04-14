@@ -1,6 +1,15 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery   
   
+  #ignore CSRF for json request (iphone) to b/c verified elsewhere
+  def verified_request?
+    if request.content_type == "application/json"
+      true
+    else
+      super()
+    end
+  end
+  
 	#This forces https in test and production
 	#force_ssl
 	
