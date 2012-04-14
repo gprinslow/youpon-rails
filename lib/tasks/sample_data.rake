@@ -10,9 +10,32 @@ namespace :db do
     validated_status = ValidationStatus.create!(:text => "validated")
     invalidated_status = ValidationStatus.create!(:text => "invalidated")
     
+    #Create one Merchant for ALL offers
+    merchant = Merchant.create!(
+      :name => "Merchant 1",
+      :description => "Test Merchant 1",
+      :phone => "555-555-5555",
+      :website => "http://www.example.com"
+    )
+    
     #Added for Offers
     10.times do |n|
       title = Faker::Company.name
+      byline = "test-#{n+1}"
+      offer = Offer.create!(:title => title,
+        :byline => byline,
+        :category => "test",
+        :discount => "$1",
+        :description => "ineffable",
+        :terms => "no terms!",
+        :start => Time.now,
+        :end => Time.now,
+        :number_offered => 10,
+        :validation_required => true)
+      offer.merchant = merchant
+    end
+    5.times do |n|
+      title = "no-validation-#{n+1}"
       byline = "test-#{n+1}"
       Offer.create!(:title => title,
         :byline => byline,
@@ -23,7 +46,7 @@ namespace :db do
         :start => Time.now,
         :end => Time.now,
         :number_offered => 10,
-        :validation_required => true)
+        :validation_required => false)
     end
     
     admin = User.create!(:name => "Garrison T. Admin",
@@ -39,6 +62,16 @@ namespace :db do
     cust_role = Role.create!(:user_id => cust_user.id)
     cust_cust = Customer.create!(:role_id => cust_role.id)
                               
+
+    emp_user = User.create!(:name => "Employee A",
+                                :email => "emp@eg.com",
+                                :password => "foobar",
+                                :password_confirmation => "foobar")
+    emp_role = Role.create!(:user_id => emp_user.id)
+    employee = Employee.create!(:role_id => emp_role.id, 
+                                :merchant_id => merchant.id)
+    emp_key = Key.create!(:employee_id => employee.id, :code => "foobarA")
+    
     
     user = User.create!(:name => "Normal User",
                                 :email => "user@eg.com",

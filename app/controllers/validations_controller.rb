@@ -3,17 +3,17 @@ class ValidationsController < ApplicationController
     respond_to do |format|
 		  #so far, only iphone may make requests
 		  format.json { 
-		    @request = Request.find(params[:request][:id])
+		    @request = Request.find(params[:validation_request][:request][:items][:id])
 		    
-		    @offer = Offer.find(params[:request][:offer_id])
-        @current_status = Status.find(params[:request][:status_id])    
+		    @offer = Offer.find(params[:validation_request][:request][:items][:offer_id])
+        @current_status = Status.find(params[:validation_request][:request][:items][:status_id])    
 		    
-		    @validation = KeyValidation.new
+		    @validation = Validation.new
         @validation.request = @request
         
         if @current_status.id = 1   #new
           if @offer.validation_required?
-            @key_match = @request.offer.merchant.keys.find_by_code(params[:key_entry])
+            @key_match = Key.find_by_code(params[:validation_request][:key_entry])
             if @key_match
               #find the employee who validated
               @employee = Employee.find_by_id(@key_match.employee_id)
@@ -22,8 +22,8 @@ class ValidationsController < ApplicationController
               @new_r_status = RequestStatus.find_by_id(2)
               @request.status = @new_r_status
               @validation.status = @new_v_status
-              @validation.critera = "entered key == offer.merchant.keys?"
-              @validation.match = "entered key == offer.merchant.keys"
+              #@validation.critera = "entered key == offer.merchant.keys?"
+              #@validation.match = "entered key == offer.merchant.keys"
               @request.save!
               @validation.save!
               render :json => { :validation => @validation }
