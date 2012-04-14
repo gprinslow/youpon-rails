@@ -1,16 +1,21 @@
 class RequestsController < ApplicationController
   def create
     respond_to do |format|
+		  #so far, only iphone may make requests
 		  format.json { 
-		    offer = Offer.find(params[:offer][:id])
+		    @offer = Offer.find(params[:offer][:id])
+		    @user = User.find(params[:user][:id])
+		    @customer = Customer.find([:customer][:id])
 		    
-		    #get customer_id through user_id query on role ->
+		    @request = Request.new
+		    @status_attr = { :text => "new" }
+		    @status = RequestStatus.create!(params[@status_attr])
+		    @request.offer = @offer
+		    @request.customer = @customer
+		    @request.status = @status
+		    @request.save!
 		    
-		    if offer.validation_required?
-		      #full validation required
-		    else
-		      #don't check keycode
-		    end
+		    render :json => { :items => @request, :status => :created }
 		  }
 		end
   end
