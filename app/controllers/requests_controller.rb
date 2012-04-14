@@ -8,8 +8,7 @@ class RequestsController < ApplicationController
 		    @customer = Customer.find(params[:customer][:id])
 		    
 		    @request = Request.new
-		    @status_attr = { :text => "new" }
-		    @status = RequestStatus.create!(params[@status_attr])
+		    @status = Status.find_by_id(1)
 		    @request.offer = @offer
 		    @request.customer = @customer
 		    @request.status = @status
