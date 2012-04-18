@@ -1,6 +1,8 @@
 class Location < ActiveRecord::Base
   belongs_to :merchant
   
+  attr_accessible :address1, :address2, :city, :state, :zip
+  
   validates :address1,
 	  :presence => true,
 	  :length => { :within => 1..100 }

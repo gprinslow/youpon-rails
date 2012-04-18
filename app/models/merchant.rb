@@ -1,8 +1,10 @@
 class Merchant < ActiveRecord::Base
-  has_many :employees, :dependent => :destroy
-  has_many :offers, :dependent => :destroy
-  has_many :keys, :through => :employees
-  has_one  :location
+  has_one  :location,   :dependent => :destroy
+  has_many :employees,  :dependent => :destroy
+  has_many :managers,   :dependent => :destroy
+  has_many :offers,     :dependent => :destroy
+  has_many :keys,       :through => :employees
+
   
   attr_accessible :name, :description, :phone, :website
   
