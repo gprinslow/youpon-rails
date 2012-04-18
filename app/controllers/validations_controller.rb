@@ -44,7 +44,7 @@ class ValidationsController < ApplicationController
               @validation.status = @new_v_status
               @request.save!
               @validation.save!
-              render :json => { :errors => { :error => @new_v_status } } 
+              render :json => { :errors => { :error => @validation.match } } 
             end
           else  #validation is not required - automatically valid
             @validation_attr = { :criteria => "no validation required",
@@ -66,15 +66,15 @@ class ValidationsController < ApplicationController
                                :match => "request.status x= new" }
           
           @validation = Validation.new(@validation_attr)
-           @validation.request = @request
+          @validation.request = @request
            
-           @new_v_status = ValidationStatus.find_by_id(6)
-           @new_r_status = RequestStatus.find_by_id(3)
-           @request.status = @new_r_status
-           @validation.status = @new_v_status
-           @request.save!
-           @validation.save!
-           render :json => { :errors => { :error => @new_v_status } }
+          @new_v_status = ValidationStatus.find_by_id(6)
+          @new_r_status = RequestStatus.find_by_id(3)
+          @request.status = @new_r_status
+          @validation.status = @new_v_status
+          @request.save!
+          @validation.save!
+          render :json => { :errors => { :error => @validation.match } }
         end                 
 		  }
 		end
