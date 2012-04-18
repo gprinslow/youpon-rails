@@ -2,9 +2,12 @@ class Merchant < ActiveRecord::Base
   has_many :employees, :dependent => :destroy
   has_many :offers, :dependent => :destroy
   has_many :keys, :through => :employees
+  has_one  :location
   
   attr_accessible :name, :description, :phone, :website
-
+  
+  accepts_nested_attributes_for :location
+  
 	validates :name,
 	    :presence => true,
 	    :length => { :within => 1..50 },
