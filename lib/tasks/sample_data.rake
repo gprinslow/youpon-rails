@@ -17,6 +17,13 @@ namespace :db do
       :phone => "555-555-5555",
       :website => "http://www.example.com"
     )
+    merchant_location = MerchantLocation.create!(
+      :address1 => "1123 Washington Ave",
+      :city => "St. Louis",
+      :state => "MO",
+      :zip => "63101"
+    )
+    merchant.location = merchant_location
     
     #Added for Offers
     10.times do |n|
@@ -24,7 +31,7 @@ namespace :db do
       byline = "test-#{n+1}"
       offer = Offer.create!(:title => title,
         :byline => byline,
-        :category => "test",
+        :category => "validation-test",
         :discount => "$1",
         :description => "ineffable",
         :terms => "no terms!",
@@ -35,11 +42,11 @@ namespace :db do
       offer.merchant = merchant
     end
     5.times do |n|
-      title = "no-validation-#{n+1}"
-      byline = "test-#{n+1}"
-      Offer.create!(:title => title,
+      title = Faker::Company.name
+      byline = "NV-test-#{n+1}"
+      offer = Offer.create!(:title => title,
         :byline => byline,
-        :category => "test",
+        :category => "no-validation-test",
         :discount => "$1",
         :description => "ineffable",
         :terms => "no terms!",
@@ -47,6 +54,7 @@ namespace :db do
         :end => Time.now,
         :number_offered => 10,
         :validation_required => false)
+      offer.merchant = merchant
     end
     
     admin = User.create!(:name => "Garrison T. Admin",
@@ -60,8 +68,7 @@ namespace :db do
                                 :password => "foobar",
                                 :password_confirmation => "foobar")
     cust_role = Role.create!(:user_id => cust_user.id)
-    cust_cust = Customer.create!(:role_id => cust_role.id)
-                              
+    cust_cust = Customer.create!(:role_id => cust_role.id)                        
 
     emp_user = User.create!(:name => "Employee A",
                                 :email => "emp@eg.com",
@@ -71,14 +78,19 @@ namespace :db do
     employee = Employee.create!(:role_id => emp_role.id, 
                                 :merchant_id => merchant.id)
     emp_key = Key.create!(:employee_id => employee.id, :code => "foobarA")
+                                                          
     
-    
-    user = User.create!(:name => "Normal User",
-                                :email => "user@eg.com",
+    mgr_user = User.create!(:name => "Manager B",
+                                :email => "mgr@eg.com",
                                 :password => "foobar",
                                 :password_confirmation => "foobar")
+    mgr_role = Role.create!(:user_id => mgr_user.id)
+    manager = Manager.create!(:role_id => mgr_role.id, 
+                                :merchant_id => merchant.id)
+    mgr_key = Key.create!(:employee_id => manager.id, :code => "foobarB")
+    
                                 
-    99.times do |n|
+    20.times do |n|
       name  = Faker::Name.name
       email = "devtest-#{n+1}@example.com"
       password  = "foobar"

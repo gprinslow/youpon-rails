@@ -6,7 +6,7 @@ class Location < ActiveRecord::Base
 	  :length => { :within => 1..100 }
 	
 	validates :address2,
-    :length => { :within => 1..100 }
+    :length => { :within => 0..100 }
   
   validates :city,
     :presence => true,

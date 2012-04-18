@@ -1,0 +1,2 @@
+class MerchantLocation < Location
+end
