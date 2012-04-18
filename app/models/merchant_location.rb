@@ -1,2 +1,0 @@
-class MerchantLocation < Location
-end
