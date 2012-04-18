@@ -21,8 +21,6 @@ class MerchantsController < ApplicationController
     @title = "Merchant Sign up"
     @merchant = Merchant.new
     @merchant.build_location
-    #@location = MerchantLocation.new
-    #@merchant.location = @location
     
     respond_to do |format|
       format.html
@@ -39,8 +37,6 @@ class MerchantsController < ApplicationController
   #POST /merchants
   def create
     @merchant = Merchant.new(params[:merchant])
-    @location = @merchant.location
-    #@merchant.location = @location
     
     respond_to do |format|  
       if @merchant.save 
@@ -56,10 +52,9 @@ class MerchantsController < ApplicationController
   #PUT /merchants/1
   def update
     @merchant = Merchant.find(params[:id])
-    @location = @merchant.location
     
     respond_to do |format|
-      if @user.update_attributes(params[:merchant]) && @location.update_attributes(params[:merchant][:location])
+      if @merchant.update_attributes(params[:merchant])
         format.html { flash[:success] = "Merchant profile updated."; redirect_to @merchant }
         format.xml  { head :ok }
       else
