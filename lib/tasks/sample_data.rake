@@ -19,7 +19,7 @@ namespace :db do
       :phone => "555-555-5555",
       :website => "http://www.example1.com"
     )
-    merchant_location1 = MerchantLocation.create!(
+    merchant_location1 = Location.create!(
       :address1 => "1123 Washington Ave",
       :city => "St. Louis",
       :state => "MO",
@@ -33,7 +33,7 @@ namespace :db do
       :phone => "111-111-1111",
       :website => "http://www.example2.com"
     )
-    merchant_location2 = MerchantLocation.create!(
+    merchant_location2 = Location.create!(
       :address1 => "3701 Lindell Blvd",
       :city => "St. Louis",
       :state => "MO",
