@@ -60,8 +60,8 @@ namespace :db do
         :start => startdate,
         :end => enddate,
         :number_offered => 10,
-        :validation_required => true)
-      offer.merchant = merchant1
+        :validation_required => true,
+        :merchant_id => merchant1.id)
     end
     
     5.times do |n|
@@ -82,8 +82,8 @@ namespace :db do
         :start => startdate,
         :end => enddate,
         :number_offered => 10,
-        :validation_required => false)
-      offer.merchant = merchant2
+        :validation_required => false,
+        :merchant_id => merchant2.id)
     end
     
     admin = User.create!(:name => "Garrison T. Admin",
