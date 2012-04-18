@@ -28,8 +28,8 @@ class ValidationsController < ApplicationController
               @new_r_status = RequestStatus.find_by_id(2)
               @request.status = @new_r_status
               @validation.status = @new_v_status
-              @request.save!
-              @validation.save!
+              @request.save
+              @validation.save
               render :json => { :validation => @validation }
             else #key did not match - invalid
               @validation_attr = { :criteria => "key == entered_key?",
@@ -42,8 +42,8 @@ class ValidationsController < ApplicationController
               @new_r_status = RequestStatus.find_by_id(3)
               @request.status = @new_r_status
               @validation.status = @new_v_status
-              @request.save!
-              @validation.save!
+              @request.save
+              @validation.save
               render :json => { :errors => { :error => @validation.match } } 
             end
           else  #validation is not required - automatically valid
@@ -57,8 +57,8 @@ class ValidationsController < ApplicationController
             @new_r_status = RequestStatus.find_by_id(2)
             @request.status = @new_r_status
             @validation.status = @new_v_status
-            @request.save!
-            @validation.save!
+            @request.save
+            @validation.save
             render :json => { :validation => @validation }
           end
         else #invalid request - not new
@@ -72,8 +72,8 @@ class ValidationsController < ApplicationController
           @new_r_status = RequestStatus.find_by_id(3)
           @request.status = @new_r_status
           @validation.status = @new_v_status
-          @request.save!
-          @validation.save!
+          @request.save
+          @validation.save
           render :json => { :errors => { :error => @validation.match } }
         end                 
 		  }

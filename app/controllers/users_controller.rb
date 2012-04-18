@@ -91,7 +91,7 @@ class UsersController < ApplicationController
         @user.role = @role
         @customer.role = @role
         
-        if @user.save! && @role.save! && @customer.save!
+        if @user.save && @role.save && @customer.save
           sign_in @user
           render :json => { :items => { :user => @user, :customer => @customer }, :status => :created }
         else

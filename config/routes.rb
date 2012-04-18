@@ -23,6 +23,7 @@ Youpon::Application.routes.draw do
 	resources :offers
 	resources :requests, :only => [:create]
 	resources :validations, :only => [:create]
+	resources :merchants
 
 	root 							:to => 'pages#home'
 	
