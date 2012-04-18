@@ -17,13 +17,17 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.xml
   def show
-    @user = User.find(params[:id])  
-    @title = @user.email
-    
     respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @user }
+      format.html {
+        @user = User.find(params[:id])  
+        @title = @user.email
+      }
+      format.xml  { 
+        @user = User.find(params[:id])
+        render :xml => @user 
+      }
       format.json {    
+        @user = User.find(params[:id])
         @role = Role.find_by_user_id(@user.id)
         @customer = Customer.find_by_role_id(@role.id)
         render :json => { :items => { :user => @user, :customer => @customer } }
@@ -81,14 +85,17 @@ class UsersController < ApplicationController
       }
       format.json {          
         #this assumes that json only comes from iphone and iphone users are Customers on signup
+        @user = User.new(params[:user])
         @customer = Customer.new
-        @user = @customer.create_role.create_user(params[:user])
+        @role = Role.new
+        @user.role = @role
+        @customer.role = @role
         
-        if @user.save
+        if @user.save! && @role.save! && @customer.save!
           sign_in @user
-          render :json => { :items => { :user => @user, :customer => @customer } }, :status => :created
+          render :json => { :items => { :user => @user, :customer => @customer }, :status => :created }
         else
-          render :json => { :errors => @user.errors }, :status => :unprocessable_entity
+          render :json => { :errors => @user.errors, :status => :unprocessable_entity }
         end
       }
     end

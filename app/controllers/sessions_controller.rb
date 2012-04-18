@@ -47,10 +47,15 @@ class SessionsController < ApplicationController
 	
 	private
 	  def not_authenticated_or_admin
-      if signed_in? && !current_user.admin?
-        flash[:success] = "You are currently signed in."
-        redirect_to(current_user)
-      end
+	    #NOTE: causing problems w/iphone, disabled for now
+      #if signed_in? && !current_user.admin?
+        #respond_to do |format|
+          #format.html {  
+            #flash[:success] = "You are currently signed in."
+            #redirect_to(current_user)
+          #}
+        #end
+      #end
     end
   #end private
 end
