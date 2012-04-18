@@ -1,5 +1,7 @@
 Youpon::Application.routes.draw do
 	
+  get "locations/new"
+
   get "validations/new"
 
   get "requests/new"
