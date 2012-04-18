@@ -17,13 +17,14 @@ Youpon::Application.routes.draw do
   get "sessions/new"
 
 	resources :users
+	resources :merchants  
 	resources :sessions, :only => [:new, :create, :destroy]
 	resources :customers
 	resources :roles
 	resources :offers
 	resources :requests, :only => [:create]
 	resources :validations, :only => [:create]
-	resources :merchants
+
 
 	root 							:to => 'pages#home'
 	

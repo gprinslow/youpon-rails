@@ -1,12 +1,15 @@
 class Merchant < ActiveRecord::Base
-  has_one  :location,   :dependent => :destroy
+  has_one  :location,   
+           :class_name => 'Location',
+           :foreign_key => "merchant_id",
+           :dependent => :destroy
   has_many :employees,  :dependent => :destroy
   has_many :managers,   :dependent => :destroy
   has_many :offers,     :dependent => :destroy
   has_many :keys,       :through => :employees
 
   
-  attr_accessible :name, :description, :phone, :website
+  attr_accessible :name, :description, :phone, :website, :location_attributes
   
   accepts_nested_attributes_for :location
   

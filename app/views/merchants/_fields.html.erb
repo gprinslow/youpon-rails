@@ -1,0 +1,20 @@
+<h2>Merchant Info</h2>
+
+<%= render 'shared/error_messages', :object => f.object %>
+
+<div class="field">
+	<%= f.label :name, "Merchant Name" %><% if is_required %><label class='red_asterisk'>*</label><% end %><br />
+	<%= f.text_field :name %>
+</div>
+<div class="field">
+	<%= f.label :description, "Merchant Description" %><% if is_required %><label class='red_asterisk'>*</label><% end %><br />
+	<%= f.text_field :description %>
+</div>
+<div class="field">
+	<%= f.label :phone, "Merchant Phone Number" %><% if is_required %><label class='red_asterisk'>*</label><% end %><br />
+	<%= f.text_field :phone %>
+</div>
+<div class="field">
+	<%= f.label :website, "Merchant Website" %><% if is_required %><label class='red_asterisk'>*</label><% end %><br />
+	<%= f.text_field :website %>
+</div>

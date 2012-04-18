@@ -2,7 +2,7 @@ class MerchantsController < ApplicationController
   #GET /merchants
   def index
     @title = "All merchants"
-    @merchants = Merchants.order(:name).page params[:page]
+    @merchants = Merchant.order(:name).page params[:page]
   end
   
   #GET /merchants/1
@@ -20,8 +20,9 @@ class MerchantsController < ApplicationController
   def new
     @title = "Merchant Sign up"
     @merchant = Merchant.new
-    @location = MerchantLocation.new
-    @merchant.location = @location
+    @merchant.build_location
+    #@location = MerchantLocation.new
+    #@merchant.location = @location
     
     respond_to do |format|
       format.html
@@ -38,11 +39,11 @@ class MerchantsController < ApplicationController
   #POST /merchants
   def create
     @merchant = Merchant.new(params[:merchant])
-    @location = MerchantLocation.new(params[:merchant][:location])
-    @merchant.location = @location
+    @location = @merchant.location
+    #@merchant.location = @location
     
     respond_to do |format|  
-      if @merchant.save && @location.save 
+      if @merchant.save 
         format.html { flash[:success] = "Merchant created."; redirect_to @merchant }
         format.xml { render :xml => @merchant, :status => :created, :location => @merchant }
       else

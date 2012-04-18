@@ -1,0 +1,22 @@
+	<h2>Merchant Location</h2> 
+	
+	<div class="field">
+		<%= n.label :address1, "Address 1" %><% if is_required %><label class='red_asterisk'>*</label><% end %><br />
+		<%= n.text_field :address1 %>
+	</div>
+	<div class="field">
+		<%= n.label :address2, "Address 2" %><br />
+		<%= n.text_field :address2 %>
+	</div>
+	<div class="field">
+		<%= n.label :city, "City" %><% if is_required %><label class='red_asterisk'>*</label><% end %><br />
+		<%= n.text_field :city %>
+	</div>
+	<div class="field">
+		<%= n.label :state, "State" %><% if is_required %><label class='red_asterisk'>*</label><% end %><br />
+		<%= n.text_field :state %>
+	</div>
+	<div class="field">
+		<%= n.label :zip, "Zip" %><% if is_required %><label class='red_asterisk'>*</label><% end %><br />
+		<%= n.text_field :zip %>
+	</div>
