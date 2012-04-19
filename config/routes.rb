@@ -1,20 +1,4 @@
 Youpon::Application.routes.draw do
-	
-  get "locations/new"
-
-  get "validations/new"
-
-  get "requests/new"
-
-  get "offers/new"
-
-  get "merchants/new"
-
-  get "roles/create"
-
-  get "customer/create"
-
-  get "sessions/new"
 
 	resources :users
 	resources :merchants  
@@ -24,6 +8,7 @@ Youpon::Application.routes.draw do
 	resources :offers
 	resources :requests, :only => [:create]
 	resources :validations, :only => [:create]
+	resources :employees, :only => [:new, :create]
 
 
 	root 							:to => 'pages#home'

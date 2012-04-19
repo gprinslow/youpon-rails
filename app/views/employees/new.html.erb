@@ -1,0 +1,15 @@
+<h1>Employee Sign up</h1>
+
+<br />Sign up by selecting your Merchant affiliation
+<br />
+<br /> 
+<%= form_for @employee do |e| %>
+	<%= render 'shared/error_messages', :object => e.object %>
+	<div class="field">
+		<%= e.label :merchant_id %><br />
+		<%= select(:employee, :merchant_id, Merchant.all.collect {|m| [ m.name, m.id] }) %>
+	</div>
+	<div class="actions">
+		<%= e.submit "Sign up" %>
+	</div>
+<% end %>
