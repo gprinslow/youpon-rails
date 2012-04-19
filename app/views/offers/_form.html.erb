@@ -28,6 +28,10 @@
     <%= f.label :end %><br />
     <%= f.datetime_select :end %>
   </div>
+	<div class="field">
+		<%= f.label :validation_required, "Validation required?" %><br />
+		<%= select(:offer, :validation_required, [["No", false],["Yes", true]])%>
+  </div>
 	<div class="actions">
 		<%= f.submit "Submit" %>
 	</div>
