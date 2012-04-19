@@ -1,12 +1,14 @@
 class OffersController < ApplicationController
   def index
-    #@offers = Offer.all
-    @merchant = current_merchant
-    @offers = @merchant.offers.order(:title).page params[:page]
-    
+    @offers = Offer.order(:title).page params[:page]
     
     respond_to do |format|
-      format.html # index.html.erb
+      format.html {
+         if employee?(current_user)
+           @merchant = current_merchant
+           @offers = @merchant.offers.order(:title).page params[:page]
+         end
+      }
       format.xml  { render :xml => @offers }
       format.json { render :json => { :items => @offers } }
     end
