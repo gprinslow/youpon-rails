@@ -9,6 +9,7 @@ Youpon::Application.routes.draw do
 	resources :requests, :only => [:create]
 	resources :validations, :only => [:create]
 	resources :employees
+	resources :reports, :only => [:index]
 
 
 	root 							:to => 'pages#home'

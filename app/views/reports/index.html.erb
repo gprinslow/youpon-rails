@@ -1,0 +1,48 @@
+<h1>Reports - <%= @merchant.name %></h1>
+
+<table>
+	<tr>
+		<td><strong>Title</strong></td> 
+		<td><strong>Byline</strong></td>
+		<td><strong>Category</strong></td>
+		<td><strong>Discount</strong></td>   
+	</tr>
+<% @offers.each do |offer| %>
+	<tr>
+		<td><%= offer.title %></td>
+		<td><%= offer.byline %></td>
+		<td><%= offer.category %></td>
+		<td><%= offer.discount %></td>
+		<% offer.requests.each do |request| %>
+			<% if request != nil %>
+			<table>
+				<tr>
+					<td><u>Customer ID</u></td> 
+					<td><u>Status ID</u></td>
+					<td><u>Created</u></td>
+					<% if request.validation != nil %>
+						<td><u>Employee ID</u></td> 
+						<td><u>Status ID</u></td>
+						<td><u>Match</u></td>
+						<td><u>Created</u></td>
+					<% end %>
+				</tr>
+				<tr>
+					<td><%= request.customer_id %></td>
+					<td><%= request.status_id %></td>
+					<td><%= request.created_at %></td>
+					<% if request.validation != nil %>
+						<td><%= request.validation.employee_id %></td> 
+						<td><%= request.validation.status_id %></td> 
+						<td><%= request.validation.match %></td>
+						<td><%= request.validation.created_at %></td>
+					<% end %>
+				</tr>
+			<table>
+			<% end %>
+		<% end %>
+		<table>
+	</tr>                     
+<% end %>
+</table>
+<%= link_to 'Back', current_merchant %>
