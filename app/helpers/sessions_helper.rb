@@ -21,6 +21,18 @@ module SessionsHelper
     user == current_user
   end
   
+  def customer?(user)
+    Customer.find_by_role_id(user.role.id) != nil 
+  end
+  
+  def employee?(user)
+    Employee.find_by_role_id(user.role.id) != nil
+  end
+  
+  def manager?(user)
+    Manager.find_by_role_id(user.role.id) != nil
+  end
+  
   def signed_in?
     !current_user.nil?
   end

@@ -19,11 +19,13 @@ class UsersController < ApplicationController
   def show
     respond_to do |format|
       format.html {
-        @user = User.find(params[:id])  
+        @user = User.find(params[:id])
+        @role = Role.find_by_user_id(@user.id)  
         @title = @user.email
       }
       format.xml  { 
         @user = User.find(params[:id])
+        @role = Role.find_by_user_id(@user.id)
         render :xml => @user 
       }
       format.json {    
