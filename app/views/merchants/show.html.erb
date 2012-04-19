@@ -1,0 +1,25 @@
+<h1>Merchant Profile</h1>
+<table class="profile" summary="Profile information">
+	<tr>
+		<td class="main">
+			<h2>
+				<%= @merchant.name %>
+			</h2>
+			<ul class="merchants">
+				<li><%= @merchant.description %></li>
+				<li><%= @merchant.phone %></li>
+				<li><%= @merchant.website %></li>
+			</ul>
+		</td>
+		<td class="sidebar round">
+			<strong>Location</strong><br /><br />
+			<%= @merchant.location.address1 %><br />
+			<% if @merchant.location.address2 != "" %><%= @merchant.location.address2 %><br /><% end %>
+			<%= @merchant.location.city %>, <%= @merchant.location.state %> <%= @merchant.location.zip %><br />
+			<br />
+			<%= link_to "Update", edit_merchant_path(@merchant) %>
+		</td>
+	</tr>
+</table>
+</br>
+</br>

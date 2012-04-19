@@ -1,0 +1,15 @@
+<h1>Update Merchant profile</h1>
+
+<%= form_for @merchant do |f| %>
+	<%= render 'fields', :f => f, :is_required => false %>
+  
+	<%= f.fields_for :location do |n| %>
+		<%= render 'locfields', :n => n, :is_required => false %>
+	<% end %>
+	
+	<div class="actions">
+		<%= f.submit "Update" %>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		<%= link_to "Cancel", @merchant %>
+	</div>
+<% end %>
