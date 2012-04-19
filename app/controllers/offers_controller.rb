@@ -10,7 +10,7 @@ class OffersController < ApplicationController
          end
       }
       format.xml  { render :xml => @offers }
-      format.json { render :json => { :items => @offers } }
+      format.json { render :json => { :offers => @offers } }
     end
   end
   
@@ -20,7 +20,7 @@ class OffersController < ApplicationController
     respond_to do |format|
       format.html #show
       format.xml  { render :xml => @offer }
-      format.json { render :json => { :items => @offer } }
+      format.json { render :json => { :offer => @offer, :location => @offer.location } }
     end
   end
   
