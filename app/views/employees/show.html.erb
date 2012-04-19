@@ -1,0 +1,27 @@
+<h1>Employee Profile</h1>
+<table class="profile" summary="Profile information">
+	<tr>
+		<td class="main">
+			<h2>
+				<%= gravatar_for @user %>
+				<%= @user.email %>
+			</h2>
+		</td>
+		<td class="sidebar round">
+			<strong>Name</strong> <%= @user.name %><br />
+			<strong>Email</strong> <%= @user.email %><br />
+			<strong>URL</strong> <%= link_to user_path(@user), @user %><br />
+			<% if @user.birthday %><strong>Birthday</strong> <%= @user.birthday %><br /><% end %>
+			<% if @user.gender != "unspecified" %><strong>Gender</strong> <%= @user.gender %><br /><% end %>
+			<br />
+			<%= link_to "Update user", edit_user_path(current_user) %>
+			<br />
+			<br />
+			<strong>Merchant</strong> <%= @employee.merchant.name %><br />
+			<strong>Role</strong> <% if @employee.is_manager %>Manager<% else %>Employee<% end %><br />
+			<%= link_to "Update employee", edit_employee_path(@employee) %>
+		</td>
+	</tr>
+</table>
+</br>
+</br>

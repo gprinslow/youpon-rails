@@ -1,0 +1,17 @@
+<h1>Update Employee profile</h1>
+
+<br />Select your Merchant affiliation
+<br />
+<br /> 
+<%= form_for @employee do |e| %>
+	<%= render 'shared/error_messages', :object => e.object %>
+	<div class="field">
+		<%= e.label :merchant_id %><br />
+		<%= select(:employee, :merchant_id, Merchant.all.collect {|m| [ m.name, m.id] }) %>
+	</div>
+	<div class="actions">
+		<%= e.submit "Update" %>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		<%= link_to "Cancel", @employee %>
+	</div>
+<% end %>

@@ -223,11 +223,19 @@ ul.merchants {
 	margin-top: 1em;
 }
 
+ul.employees {
+	margin-top: 1em;
+}
+
 .users li {
 	list-style: none;
 } 
 
 .merchants li {
+	list-style: none;
+}
+
+.employees li {
 	list-style: none;
 }
 
