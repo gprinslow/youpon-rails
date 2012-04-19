@@ -60,7 +60,7 @@ class EmployeesController < ApplicationController
      
     respond_to do |format|
       if @employee.update_attributes(params[:employee])
-        format.html  { flash[:success] = "Employee profile updated."; redirect_to current_user }
+        format.html  { flash[:success] = "Employee profile updated."; redirect_to @employee }
         format.xml   { head :ok }
       else
         format.html  { @title = "Update Employee profile"; render :action => "edit" }

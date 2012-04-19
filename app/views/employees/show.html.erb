@@ -13,7 +13,6 @@
 			<strong>URL</strong> <%= link_to user_path(@user), @user %><br />
 			<% if @user.birthday %><strong>Birthday</strong> <%= @user.birthday %><br /><% end %>
 			<% if @user.gender != "unspecified" %><strong>Gender</strong> <%= @user.gender %><br /><% end %>
-			<br />
 			<%= link_to "Update user", edit_user_path(current_user) %>
 			<br />
 			<br />

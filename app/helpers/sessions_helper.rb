@@ -30,7 +30,7 @@ module SessionsHelper
   end
   
   def manager?(user)
-    Manager.find_by_role_id(user.role.id) != nil
+    Employee.find_by_role_id(user.role.id).is_manager?
   end
   
   def signed_in?
