@@ -8,6 +8,14 @@
 					<% if current_user.admin? %>
 						<li><%= link_to "Users", users_path %></li>
 					<% end %>
+					<% if employee?(current_user) %>
+					  <li><%= link_to "Employee", current_employee %></li>
+					<% end %>
+					<% if manager?(current_user) %>
+					  <li><%= link_to "Merchant", current_merchant %></li>
+					  <li><%= link_to "Offers", offers_path %></li>
+						<li><%= link_to "Reports", reports_path %></li>
+					<% end %>
 					<li><%= link_to "Profile", current_user %></li>
 					<li><%= link_to "Sign out", signout_path, :method => :delete %></li>
 			<% else %>
