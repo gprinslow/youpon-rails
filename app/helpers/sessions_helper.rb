@@ -33,6 +33,14 @@ module SessionsHelper
     Employee.find_by_role_id(user.role.id).is_manager?
   end
   
+  def current_employee
+    Employee.find_by_role_id(current_user.role.id)
+  end
+  
+  def current_merchant
+    Merchant.find_by_id(current_employee.merchant_id)
+  end
+  
   def signed_in?
     !current_user.nil?
   end

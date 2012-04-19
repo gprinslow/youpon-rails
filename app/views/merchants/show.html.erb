@@ -10,14 +10,16 @@
 				<li><%= @merchant.phone %></li>
 				<li><%= @merchant.website %></li>
 			</ul>
+			<%= link_to "Merchant Offers", offers_path %>
+			<br />
 		</td>
 		<td class="sidebar round">
 			<strong>Location</strong><br /><br />
-			<%= @merchant.location.address1 %><br />
-			<% if @merchant.location.address2 != "" %><%= @merchant.location.address2 %><br /><% end %>
-			<%= @merchant.location.city %>, <%= @merchant.location.state %> <%= @merchant.location.zip %><br />
+			<%= @merchant.location.address1 %>
+			<% if @merchant.location.address2 != "" %> <%= @merchant.location.address2 %><% end %>
+			<br /><%= @merchant.location.city %>, <%= @merchant.location.state %> <%= @merchant.location.zip %><br />
 			<br />
-			<%= link_to "Update", edit_merchant_path(@merchant) %>
+			<%= link_to "Update Merchant profile", edit_merchant_path(@merchant) %>
 		</td>
 	</tr>
 </table>

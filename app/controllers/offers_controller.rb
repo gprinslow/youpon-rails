@@ -1,7 +1,9 @@
 class OffersController < ApplicationController
   def index
     #@offers = Offer.all
-    @offers = Offer.order(:title).page params[:page]
+    @merchant = current_merchant
+    @offers = @merchant.offers.order(:title).page params[:page]
+    
     
     respond_to do |format|
       format.html # index.html.erb

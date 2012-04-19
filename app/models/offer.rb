@@ -4,5 +4,5 @@ class Offer < ActiveRecord::Base
   has_many :requests
   has_many :validations, :through => :requests
   
-  attr_accessible :title, :byline, :category, :discount, :description, :terms, :start, :end, :number_offered, :validation_required
+  attr_accessible :title, :byline, :category, :discount, :description, :terms, :start, :end, :number_offered, :validation_required, :merchant_id
 end

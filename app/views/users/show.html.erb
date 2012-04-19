@@ -6,6 +6,10 @@
 				<%= gravatar_for @user %>
 				<%= @user.email %>
 			</h2>
+			<br />
+			<% if employee?(@user) %><%= link_to "Employee profile", employee_path(current_employee) %><br /><% end %>
+
+			<% if manager?(@user) %><%= link_to "Merchant profile", merchant_path(current_merchant) %><br /><% end %>
 		</td>
 		<td class="sidebar round">
 			<strong>Name</strong> <%= @user.name %><br />

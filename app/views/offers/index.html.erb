@@ -1,13 +1,23 @@
-<h1>All offers</h1>
+<h1>Offers - <%= @merchant.name %></h1>
 
 <table>
-
-
+	<tr>
+		<td><strong>Title</strong></td> 
+		<td><strong>Byline</strong></td>
+		<td><strong>Category</strong></td>
+		<td><strong>Discount</strong></td>   
+	</tr>
 <% @offers.each do |offer| %>
 	<tr>
-		<td>Title: <%= offer.title %></td>
-	</tr>
+		<td><%= offer.title %></td>
+		<td><%= offer.byline %></td>
+		<td><%= offer.category %></td>
+		<td><%= offer.discount %></td>
+		<td><%= link_to "Update", offer %></td>
+		<td><%= link_to "Delete", offer, :method => :delete, :confirm => "You sure?", :title => "Delete #{offer.title}" %></td>
+	</tr>                     
 <% end %>
 </table>
 
 <br />
+<%= link_to 'Back', current_merchant %>
