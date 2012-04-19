@@ -4,7 +4,6 @@ class Merchant < ActiveRecord::Base
            :foreign_key => "merchant_id",
            :dependent => :destroy
   has_many :employees,  :dependent => :destroy
-  has_many :managers,   :dependent => :destroy
   has_many :offers,     :dependent => :destroy
   has_many :keys,       :through => :employees
 

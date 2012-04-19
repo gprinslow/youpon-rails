@@ -9,6 +9,10 @@
 		<%= e.label :merchant_id %><br />
 		<%= select(:employee, :merchant_id, Merchant.all.collect {|m| [ m.name, m.id] }) %>
 	</div>
+	<div class="field">
+		<%= e.label :is_manager, "Employee or Manager?" %><br />
+		<%= select(:employee, :is_manager, [["Employee", false],["Manager", true]])%>
+  </div>
 	<div class="actions">
 		<%= e.submit "Sign up" %>
 	</div>
