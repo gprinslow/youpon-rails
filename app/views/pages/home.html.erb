@@ -6,3 +6,15 @@
 		<td><%= link_to "Sign in", signin_path, :class => "signin_button round" %></td>
 	</tr>
 </table>
+<br />
+<br /> 
+<br /> 
+<br /> 
+<% if signed_in? %>
+<p>Merchants, please create a merchant profile below after signing up and signing in.</p>
+<table>
+	<tr>
+		<td><%= link_to "Merchant sign up", new_merchant_path, :class => "mrchsignup_button round" %></td>
+	</tr>
+</table>
+<% end %>

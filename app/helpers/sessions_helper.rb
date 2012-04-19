@@ -30,7 +30,12 @@ module SessionsHelper
   end
   
   def manager?(user)
-    Employee.find_by_role_id(user.role.id).is_manager?
+    employee = Employee.find_by_role_id(user.role.id)
+    if employee != nil
+      employee.is_manager?
+    else
+      false
+    end
   end
   
   def current_employee

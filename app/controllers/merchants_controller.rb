@@ -40,7 +40,7 @@ class MerchantsController < ApplicationController
     
     respond_to do |format|  
       if @merchant.save 
-        format.html { flash[:success] = "Merchant created."; redirect_to @merchant }
+        format.html { flash[:success] = "Merchant created."; redirect_to new_employee_path }
         format.xml { render :xml => @merchant, :status => :created, :location => @merchant }
       else
         format.html { @title = "Merchant Sign up"; render :action => "new" }
