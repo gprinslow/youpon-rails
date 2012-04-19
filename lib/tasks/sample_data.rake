@@ -106,7 +106,8 @@ namespace :db do
                                 :password_confirmation => "foobar")
     emp_role = Role.create!(:user_id => emp_user.id)
     employee = Employee.create!(:role_id => emp_role.id, 
-                                :merchant_id => merchant1.id)
+                                :merchant_id => merchant1.id,
+                                :is_manager => false)
     emp_key = Key.create!(:employee_id => employee.id, :code => "foobarA")
                                                           
     
@@ -115,8 +116,9 @@ namespace :db do
                                 :password => "foobar",
                                 :password_confirmation => "foobar")
     mgr_role = Role.create!(:user_id => mgr_user.id)
-    manager = Manager.create!(:role_id => mgr_role.id, 
-                                :merchant_id => merchant1.id)
+    manager = Employee.create!(:role_id => mgr_role.id, 
+                                :merchant_id => merchant1.id,
+                                :is_manager => true)
     mgr_key = Key.create!(:employee_id => manager.id, :code => "foobarB")
     
     #Employees of Merchant 2
@@ -126,7 +128,8 @@ namespace :db do
                                 :password_confirmation => "foobar")
     emp2_role = Role.create!(:user_id => emp2_user.id)
     employee2 = Employee.create!(:role_id => emp2_role.id, 
-                                :merchant_id => merchant2.id)
+                                :merchant_id => merchant2.id,
+                                :is_manager => false)
     emp2_key = Key.create!(:employee_id => employee2.id, :code => "foobarC")
                                                           
     
@@ -135,8 +138,9 @@ namespace :db do
                                 :password => "foobar",
                                 :password_confirmation => "foobar")
     mgr2_role = Role.create!(:user_id => mgr2_user.id)
-    manager2 = Manager.create!(:role_id => mgr2_role.id, 
-                                :merchant_id => merchant2.id)
+    manager2 = Employee.create!(:role_id => mgr2_role.id, 
+                                :merchant_id => merchant2.id,
+                                :is_manager => true)
     mgr2_key = Key.create!(:employee_id => manager2.id, :code => "foobarD")
     
                                 

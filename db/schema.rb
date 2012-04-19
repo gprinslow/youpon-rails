@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120418221012) do
+ActiveRecord::Schema.define(:version => 20120419042233) do
 
   create_table "customers", :force => true do |t|
     t.integer  "role_id"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(:version => 20120418221012) do
     t.integer  "merchant_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "type"
+    t.boolean  "is_manager"
   end
 
   create_table "keys", :force => true do |t|

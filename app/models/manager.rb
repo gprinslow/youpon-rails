@@ -1,2 +1,0 @@
-class Manager < Employee
-end
